@@ -7,7 +7,7 @@ from classes import Piloto, Coche
 
 load_dotenv()
 
-class TestRelacionPilotoCoche(unittest.TestCase):
+class Test1(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -19,7 +19,7 @@ class TestRelacionPilotoCoche(unittest.TestCase):
         cls.pilotos_ids = []
         cls.coches_ids = []
 
-    def test_creacion_piloto_y_coche(self):
+    def test_pilotocoche(self):
         piloto = Piloto("Carlos Sainz", "España", 29)
         piloto_id = piloto.save(self.pilotos_col)
         self.pilotos_ids.append(ObjectId(piloto_id))
@@ -34,7 +34,7 @@ class TestRelacionPilotoCoche(unittest.TestCase):
         coche_guardado = self.coches_col.find_one({"_id": ObjectId(coche_id)})
         self.assertEqual(coche_guardado["piloto_id"], piloto_id)
 
-    def test_actualizacion_relacion(self):
+    def test_actualizacion(self):
         piloto = Piloto("Oscar Piastri", "Australia", 23)
         piloto_id = piloto.save(self.pilotos_col)
         self.pilotos_ids.append(ObjectId(piloto_id))
