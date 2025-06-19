@@ -8,11 +8,12 @@ class Piloto:
     edad: int
     coche_id: str = None
 
-    def save(self, coll):
+    def save(self, collection, coche_id=None):
         data = asdict(self)
-        result = coll.insert_one(data)
-        self._id = str(result.inserted_id)
-        return self._id
+        if coche_id:
+            data['coche_id'] = coche_id  
+        result = collection.insert_one(data)
+        return str(result.inserted_id)
 
     def update(self, coll, document_id, coche_id):
         filtro = {"_id": ObjectId(document_id)}

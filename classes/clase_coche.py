@@ -8,11 +8,10 @@ class Coche:
     año: int
     piloto_id: str
 
-    def save(self, coll):
+    def save(self, collection):
         data = asdict(self)
-        result = coll.insert_one(data)
-        self._id = str(result.inserted_id)
-        return self._id
+        result = collection.insert_one(data)
+        return str(result.inserted_id)
 
     def update(self, coll, document_id, piloto_id):
         filtro = {"_id": ObjectId(document_id)}
